@@ -52,7 +52,7 @@ if (!isset($_POST['product_id']) || !isset($_POST['product_total'])) {
 
 
                     <br>
-                    <form action="xpay.php" method="POST">
+                    <form action="stripe.php" method="POST">
                         <input type="hidden" name="product_id" value="<?php echo $_POST['product_id']; ?>">
                         <input type="hidden" name="product_total" value="<?php echo $_POST['product_total']; ?>">
                         <input type="hidden" name="product_qty" value="<?php echo $_POST['product_qty']; ?>">

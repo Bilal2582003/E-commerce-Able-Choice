@@ -32,6 +32,6 @@ $db->insert('order_products', [
 $db->getResult();
 
 // Redirect to Confirmation Page
-header("Location: success.php?payment_request_id=" . $order_id . "&payment_status=Credit");
+header("Location: success_cod.php?payment_request_id=" . $order_id . "&payment_status=Credit");
 exit();
 ?>
