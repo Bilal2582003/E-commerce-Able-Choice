@@ -202,5 +202,37 @@ if (isset($_POST['modifyPass'])) {
 	}
 }
 
+if(isset($_POST['updateTheme'])){
+	if (!isset($_POST['theme_id']) || empty($_POST['theme_id'])) {
+		echo json_encode(array('error' => 'Theme Error.'));
+		exit;
+	}else{
+		$db = new Database();
+
+		$params = [
+			'theme_id' => $db->escapeString($_POST['theme_id']),
+		];
+		
+		if (!session_id()) {
+			session_start();
+		}
+		$db->select("theme", "*", null, 'id = ' . $db->escapeString( $_POST['theme_id']));
+		$res = $db->getResult();
+		if (count($res) > 0) {
+			$_SESSION['theme'] = $res[0];
+		}
+		$user_id = $_SESSION['user_id'];
+		$db->update('user', $params, "user_id = '{$user_id}'");
+		$response = $db->getResult();
+		if (!empty($response)) {
+			echo json_encode(array('success' => $response));
+		}
+		else {
+			// If no rows were updated, send an error response
+			echo json_encode(array('error' => 'Theme update failed.'));
+		}
+		exit;
+	}
+}
 
 ?>

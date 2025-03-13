@@ -1,11 +1,11 @@
-<div id ="footer">
+<div id="footer">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <?php
-                    $db = new Database();
-                    $db->select('options','site_name,footer_text,site_desc,contact_phone,contact_email,contact_address',null,null,null,null);
-                    $footer = $db->getResult();  ?>
+                $db = new Database();
+                $db->select('options', 'site_name,footer_text,site_desc,contact_phone,contact_email,contact_address', null, null, null, null);
+                $footer = $db->getResult(); ?>
                 <h3><?php echo $footer[0]['site_name']; ?></h3>
                 <p><?php echo $footer[0]['site_desc']; ?></p>
             </div>
@@ -14,12 +14,14 @@
                 <ul class="menu-list">
                     <?php
                     $db = new Database();
-                    $db->select('sub_categories','*',null,'cat_products > 0 AND show_in_footer ="1"',null,null);
+                    $db->select('sub_categories', '*', null, 'cat_products > 0 AND show_in_footer ="1"', null, null);
                     $result = $db->getResult();
-                    if(count($result) > 0){
-                        foreach($result as $res){ ?>
-                            <li><a href="category.php?cat=<?php echo $res['sub_cat_id']; ?>"><?php echo $res['sub_cat_title']; ?></a></li>
-                        <?php    }
+                    if (count($result) > 0) {
+                        foreach ($result as $res) { ?>
+                            <li><a
+                                    href="category.php?cat=<?php echo $res['sub_cat_id']; ?>"><?php echo $res['sub_cat_title']; ?></a>
+                            </li>
+                        <?php }
                     } ?>
                 </ul>
             </div>
@@ -35,14 +37,14 @@
             <div class="col-md-3">
                 <h3>Contact Us</h3>
                 <ul class="menu-list">
-                    <?php if(!empty($footer[0]['contact_address'])){ ?>
-                        <li><i class="fa fa-home" ></i><span>: <?php echo $footer[0]['contact_address']; ?></span></li>
+                    <?php if (!empty($footer[0]['contact_address'])) { ?>
+                        <li><i class="fa fa-home"></i><span>: <?php echo $footer[0]['contact_address']; ?></span></li>
                     <?php } ?>
-                    <?php if(!empty($footer[0]['contact_phone'])){ ?>
-                        <li><i class="fa fa-phone" ></i><span>: <?php echo $footer[0]['contact_phone']; ?></span></li>
+                    <?php if (!empty($footer[0]['contact_phone'])) { ?>
+                        <li><i class="fa fa-phone"></i><span>: <?php echo $footer[0]['contact_phone']; ?></span></li>
                     <?php } ?>
-                    <?php if(!empty($footer[0]['contact_email'])){ ?>
-                        <li><i class="fa fa-envelope" ></i><span>: <?php echo $footer[0]['contact_email']; ?></span></li>
+                    <?php if (!empty($footer[0]['contact_email'])) { ?>
+                        <li><i class="fa fa-envelope"></i><span>: <?php echo $footer[0]['contact_email']; ?></span></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -60,8 +62,8 @@
 <!--owl carousel plugin-->
 <script type="text/javascript" src="js/owl.carousel.js"></script>
 <script>
-   
-   <?php
+
+    <?php
     echo "document.body.className = ''; ";
     if ($_SESSION['theme']) {
         $className = $_SESSION['theme']['color'];
@@ -78,7 +80,34 @@
 
 </script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
+
+        $(".setTheme").on("click", function () {
+            // alert("this")
+            var themeId = $(this).data('id'); // Get the theme ID from the data-id attribute
+            // Send AJAX request to update the theme for the user
+            $.ajax({
+                url: 'php_files/user.php', // The PHP file that handles the update
+                type: 'POST',
+                data: {
+                    theme_id: themeId, // Send the theme_id to the server
+                    updateTheme: "updateTheme"
+                },
+                success: function (response) {
+                    var data = JSON.parse(response); // Parse the JSON response
+                    if (data.success) {
+                        alert("Theme Updated Successfully"); // Show success message
+                        // Optionally, update the UI or reload page
+                        window.location.reload();
+                    } else {
+                        alert(data.error); // Show error message if something went wrong
+                    }
+                },
+                error: function () {
+                    alert('Request failed. Please try again.');
+                }
+            });
+        })
 
         $('#product-img').okzoom({
             width: 200,
@@ -90,7 +119,7 @@
             loop: true,
             margin: 0,
             responsiveClass: true,
-            navText : ["",""],
+            navText: ["", ""],
             responsive: {
                 0: {
                     items: 1,
@@ -114,7 +143,7 @@
             loop: true,
             margin: 0,
             responsiveClass: true,
-            navText : ["",""],
+            navText: ["", ""],
             responsive: {
                 0: {
                     items: 1,
@@ -142,7 +171,7 @@
             loop: true,
             margin: 0,
             responsiveClass: true,
-            navText : ["",""],
+            navText: ["", ""],
             responsive: {
                 0: {
                     items: 1,
@@ -170,4 +199,5 @@
 </script>
 
 </body>
+
 </html>

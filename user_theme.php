@@ -4,8 +4,8 @@ include 'config.php';
 include 'header.php'; ?>
 <style>
     .specialContainer {
-        margin:10px;
-        padding:10px;
+        margin: 10px;
+        padding: 10px;
         display: flex;
         flex-wrap: wrap;
         margin: -10px;
@@ -69,15 +69,39 @@ include 'header.php'; ?>
     }
 </style>
 <div class="specialContainer">
-    <div class="column">
-        <a href="#" class="card-wrapper">
-            <div class="card"
-                style="background-image: url(https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=600;">
-                <h4>Cappuccino</h4>
-            </div>
-        </a>
-    </div>
-    <div class="column">
+    <?php
+    $db = new Database();
+    $db->select("theme");
+    $response = $db->getResult();
+    if (!empty($response)) {
+        if (count($response) > 1) {
+            foreach ($response as $res) {
+                $db->select("user", '*', null, 'user_id = ' . $_SESSION['user_id']);
+                $result = $db->getResult();
+                if ($result[0]['theme_id'] == $res['id']) {
+                    $class = 'style="background-color:green" ';
+                    $value = 'SELECTED';
+                } else {
+                    $class = 'class="setTheme" ';
+                    $value = 'SET';
+                }
+                // Sanitize output for image URL
+                $image = htmlspecialchars($res['image'], ENT_QUOTES, 'UTF-8');
+                ?>
+
+                <div class="column">
+                    <div class="card-wrapper" style="cursor:pointer">
+                        <div class="card" style="background-image: url(images/<?php echo $image ?>)">
+                            <h4 data-id="<?php echo $res['id'] ?>" <?php echo $class ?>><?php echo $value ?></h4>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+    }
+    ?>
+    <!-- <div class="column">
         <a href="#" class="card-wrapper">
             <div class="card"
                 style="background-image: url(https://images.pexels.com/photos/2638019/pexels-photo-2638019.jpeg?auto=compress&cs=tinysrgb&w=600);">
@@ -100,6 +124,6 @@ include 'header.php'; ?>
                 <h4>Cortado</h4>
             </div>
         </a>
-    </div>
+    </div> -->
 </div>
 <?php include 'footer.php';
