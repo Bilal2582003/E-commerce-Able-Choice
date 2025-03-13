@@ -2,30 +2,39 @@
 /* ====================== */
 :root{
     --main :#e93700; 
+    --color: #df3500;
 }
 .main{
     --main: #e93700;
+    --color: #df3500;
 }
 .purpleTheme{
     --main: linear-gradient(135deg, #6a11cb, #2575fc);
+    --color: #6a11cb;
 }
 .blackTheme{
     --main: linear-gradient(135deg, #000000, #222222);
+    --color: #000000;
 }
 .blueTheme{
     --main: linear-gradient(135deg, #cceeff, #99ddff);
+    --color: #cceeff;
 }
 .brownTheme{
     --main: linear-gradient(135deg, #8B4513, #A0522D, #D2B48C); /* Dark to Light Brown */
+    --color: #8B4513; /* Dark to Light Brown */
 }
 .greenTheme {
     --main: linear-gradient(135deg, #008000, #66CDAA, #B2FF59); /* Dark to Light Green */
+    --color: #008000; /* Dark to Light Green */
 }
 .pinkTheme {
     --main: linear-gradient(135deg, #FF1493, #FF69B4, #FFC0CB); /* Dark to Light Pink */
+    --color: #FF1493; /* Dark to Light Pink */
 }
 .yellowTheme {
     --main: linear-gradient(135deg, #FFD700, #FFEE58, #FFFACD); /* Golden to Soft Yellow */
+    --color: #FFD700; /* Golden to Soft Yellow */
 }
 body{
     margin: 0;
@@ -344,7 +353,7 @@ ul{
 }
 #header .search .btn{
     color: #fff;
-    background-color: #df3500;
+    background-color: var(--color);
     font-size: 20px;
     padding: 8px 12px 7.5px;
     border: none;
@@ -379,12 +388,12 @@ ul{
     font-size: 20px;
 }
 #header .header-info li a:hover{
-    color: #df3500;
+    color: var(--color);
 }
 
 #header .header-info li a span{
     color: #fff;
-    background-color: #DF3500;
+    background-color: var(--color);
     font-size: 13px;
     font-weight: 600;
     text-align: center;
@@ -405,7 +414,7 @@ ul{
 /*=============================*/
 
 #header-menu .menu-list{
-    background-color: #df3500;
+    background-color: var(--color);
     padding: 8px 15px;
     margin: 0 -15px;
     text-align: center;
@@ -678,7 +687,7 @@ ul{
     text-transform: capitalize;
     margin: 0 4px;
     border-radius: 50%;
-    color: #df3500;
+    color: var(--color);
     background-color: #fff;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     transform: scale(0);
@@ -686,7 +695,7 @@ ul{
 }
 .product-grid .product-button-group a:hover{
     color: #fff;
-    background-color: #df3500;
+    background-color: var(--color);
     text-shadow: 0 0 2px #333;
     box-shadow: 0 0 10px rgba(0,0,0,0.5) inset;
 }
@@ -710,7 +719,7 @@ ul{
     color: #555;
 }
 .product-grid .title a:hover {
-    color:#df3500;
+    color:var(--color);
 }
 
 .product-grid .price {
@@ -849,17 +858,17 @@ ul{
     margin: 0 10px 0 0;
     text-transform: uppercase;
     color: #fff;
-    background-color: #df3500;
+    background-color: var(--color);
     padding: 7px 15px;
     display: inline-block;
-    border: 3px solid #df3500;
+    border: 3px solid var(--color);
     border-radius: 20px;
     transition: all 0.3s;
 }
 
 .single-product-container .product-content a:hover{
     background-color: #fff;
-    color: #df3500;
+    color: var(--color);
 }
 
 /*----------------------------*/
@@ -942,7 +951,7 @@ ul{
 
 #user_profile-content .modify-btn{
     color: #fff;
-    background-color: #DF3500;
+    background-color: var(--color);
     display: inline-block;
 }
 
@@ -982,7 +991,7 @@ ul{
 }
 .pagination li a.page-link:before{
     content: '';
-    background-color: #DF3500;
+    background-color: var(--color);
     height: 150%;
     width: 120%;
     position: absolute;
@@ -1018,7 +1027,7 @@ ul{
 }
 
 .breadcrumb li a:hover{
-    color: #DF3500;
+    color: var(--color);
 }
 
 /*----------------------------*\
@@ -1026,7 +1035,7 @@ ul{
 \*----------------------------*/
 #footer{
     color: #fff;
-    background-color: #df3500;
+    background-color: var(--color);
     padding: 30px 0 0;
 }
 

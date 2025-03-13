@@ -7,6 +7,13 @@
     if(!empty($header[0]['currency_format'])){
         $cur_format = $header[0]['currency_format'];
     }
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+        if(isset($_SESSION['theme']['logo'])){
+            $header[0]['site_logo'] = $_SESSION['theme']['logo'];
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +24,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <?php if(isset($title)){ ?>
         <title><?php echo $title; ?></title>
-    <?php }else{ ?>
+    <?php }else{ $title = ''; ?>
         <title>OnlineShop</title>
     <?php } ?>
     <!-- Bootstrap -->
@@ -64,9 +71,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                             <?php
-                            if (session_status() == PHP_SESSION_NONE) {
-                                session_start();
-                            }
+                            
                             if(isset($_SESSION["user_role"])){ ?>
                                 Hello <?php echo $_SESSION["username"]; ?><i class="caret"></i>
                             <?php  }else{ ?>
@@ -80,6 +85,7 @@
                                 if(isset($_SESSION["user_role"])){ ?>
                                     <li><a href="user_profile.php" class="" >My Profile</a></li>
                                     <li><a href="user_orders.php" class="" >My Orders</a></li>
+                                    <li><a href="user_theme.php" class="" >Theme</a></li>
                                     <li><a href="javascript:void()" class="user_logout" >Logout</a></li>
                             <?php  }else{ ?>
                                     <li><a data-toggle="modal" data-target="#userLogin_form" href="#">login</a></li>
@@ -137,6 +143,9 @@
         </div>
     </div>
 </div>
+<?php
+if($title != 'Theme'){
+?>
 <div id="header-menu">
     <div class="container-fluid">
         <div class="row">
@@ -156,3 +165,8 @@
         </div>
     </div>
 </div>
+<?php
+}else{
+    echo '<hr>';
+}
+?>

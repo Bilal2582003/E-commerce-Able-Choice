@@ -59,7 +59,24 @@
 <script src="js/okzoom.min.js" type="text/javascript"></script>
 <!--owl carousel plugin-->
 <script type="text/javascript" src="js/owl.carousel.js"></script>
+<script>
+   
+   <?php
+    echo "document.body.className = ''; ";
+    if ($_SESSION['theme']) {
+        $className = $_SESSION['theme']['color'];
+        echo "document.body.classList.add('" . $className . "');";
+    }
+    ?>
 
+    $('.product_description').jqte({
+        link: false,
+        unlink: false,
+        color: false,
+        source: false,
+    });
+
+</script>
 <script>
     $(document).ready(function(){
 
