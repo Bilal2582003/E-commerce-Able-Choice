@@ -208,6 +208,38 @@ $(document).ready(function(){
         }
 
     });
+    $('#updateTheme').submit(function(e){
+        e.preventDefault();
+        $('.alert').hide();
+        var color = $('.color').val();
+        if(color == ''){
+            $('#updateTheme').prepend('<div class="alert alert-danger">Color Field is Empty.</div>');
+        }else{
+            var formdata = new FormData(this);
+            formdata.append('update',1);
+            $.ajax({
+                url    : "./php_files/theme.php",
+                type   : "POST",
+                data   : formdata,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response){
+                    $('.alert').hide();
+                    console.log(response);
+                    var res = response;
+                    if(res.hasOwnProperty('success')){
+                        $('#updateTheme').prepend('<div class="alert alert-success">Theme Updated Successfully.</div>');
+                        setTimeout(function(){ window.location = URL+'admin/theme.php'; }, 1000);
+                        
+                    }else if(res.hasOwnProperty('error')){
+                        $('#updateTheme').prepend('<div class="alert alert-danger">'+res.error+'</div>');
+                    }
+                }
+            });
+        }
+
+    });
 
 
     // delete product

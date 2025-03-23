@@ -75,6 +75,7 @@
                             <li <?php if(basename($_SERVER['PHP_SELF']) == "orders.php") echo 'class="active"'; ?>><a href="orders.php">Orders</a></li>
                             <li <?php if(basename($_SERVER['PHP_SELF']) == "users.php") echo 'class="active"'; ?>><a href="users.php">Users</a></li>
                             <li <?php if(basename($_SERVER['PHP_SELF']) == "options.php") echo 'class="active"'; ?>><a href="options.php">Options</a></li>
+                            <li <?php if(basename($_SERVER['PHP_SELF']) == "theme.php") echo 'class="active"'; ?>><a href="theme.php">Theme</a></li>
                         </ul>
                     </div>
                     <!-- Menu Bar End -->
